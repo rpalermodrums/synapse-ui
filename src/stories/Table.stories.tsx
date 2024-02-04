@@ -1,3 +1,6 @@
+// import React from 'react';
+import { Meta } from '@storybook/react';
+
 import {
   Table,
   TableBody,
@@ -8,7 +11,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Meta } from '@storybook/react';
 
 export default {
   title: 'UI/Table',

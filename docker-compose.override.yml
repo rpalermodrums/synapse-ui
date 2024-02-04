@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  app:
+    command: npm run dev
+    ports:
+      - "8081:8081"
+    build:
+      context: ./
+      target: dev
+    volumes:
+      - ./:/app
+      - /app/node_modules
+  
+  storybook:
+    command: npm run storybook -- -p 6006 -h storybook.synapse-ui.orb.local
+    build:
+      context: ./
+      target: dev
+    ports:
+      - "6006:6006"

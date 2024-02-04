@@ -1,3 +1,4 @@
+// import React from 'react';
 import type { ColumnDef } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
 import { z } from 'zod';
@@ -13,6 +14,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { DataTableColumnHeader } from './DataColumnHeader';
+
+export type InvoiceStatus = 'pending' | 'processing' | 'success' | 'failed';
 
 // This schema is used to define the shape of our data.
 export const Payment = z.object({
@@ -52,6 +55,7 @@ export const columns: ColumnDef<z.infer<typeof Payment>>[] = [
   },
   {
     accessorKey: 'status',
+    accessorFn: (row) => row.status,
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}

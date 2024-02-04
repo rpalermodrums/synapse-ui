@@ -1,8 +1,9 @@
+// import React from 'react';
 import { Meta } from '@storybook/react';
 import { fakerEN_US as faker } from '@faker-js/faker';
 
+import { InvoiceStatus, columns } from './data-table/columns';
 import { DataTable } from '@/stories/data-table/DataTable';
-import { columns } from './data-table/columns';
 
 export default {
   title: 'UI/DataTable',
@@ -16,7 +17,7 @@ const data = Array.from({ length: 100 }, () => ({
     'processing',
     'success',
     'failed',
-  ]) as string,
+  ]) as InvoiceStatus,
   email: faker.internet.email(),
   amount: Number(faker.finance.amount({ min: 1, max: 1000 })),
 }));
