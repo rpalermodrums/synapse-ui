@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { DollarSignIcon } from 'lucide-react';
 import {
   ColumnFiltersState,
   SortingState,
@@ -13,6 +13,7 @@ import {
 } from '@tanstack/react-table';
 import type { ColumnDef } from '@tanstack/react-table';
 
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -34,7 +35,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Button } from '@/components/ui/button';
 
 export interface DataTableProps<TData, TValue> {
   columns: Array<ColumnDef<TData, TValue>>;
@@ -69,8 +69,6 @@ export function DataTable<TData, TValue>({
     },
   });
 
-  const selectedRows = table.getFilteredSelectedRowModel().rows;
-
   return (
     <div>
       <div className="flex py-4">
@@ -89,12 +87,72 @@ export function DataTable<TData, TValue>({
               window.history.pushState({}, '', url.toString());
             }
           }}
-          className="max-w-sm"
+          className="max-w-sm ml-2 mr-2"
         />
+
+        {/* Add status filter select */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="ml-2">
+              Filter Status
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            {['pending', 'processing', 'success', 'failed'].map((status) => {
+              return (
+                <DropdownMenuCheckboxItem
+                  key={status}
+                  checked={
+                    table.getColumn('status')?.getFilterValue() === status
+                  }
+                  onCheckedChange={(value) =>
+                    table
+                      .getColumn('status')
+                      ?.setFilterValue(value ? status : undefined)
+                  }
+                >
+                  {status}
+                </DropdownMenuCheckboxItem>
+              );
+            })}
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        <div className="flex ml-4 mr-2 items-center justify-space-between">
+          <Input
+            icon={() => <DollarSignIcon />}
+            type="number"
+            placeholder="Min Amount"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              const filterValue = table.getColumn('amount')?.getFilterValue();
+              const max = Array.isArray(filterValue) ? filterValue[1] : null;
+              // set filter value
+              table
+                .getColumn('amount')
+                ?.setFilterValue([event.target.value, max]);
+            }}
+            className="max-w-sm ml-2 mr-1"
+          />
+          -
+          <Input
+            icon={() => <DollarSignIcon />}
+            type="number"
+            placeholder="Max Amount"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              const filterValue = table.getColumn('amount')?.getFilterValue();
+              const min = Array.isArray(filterValue) ? filterValue[0] : null;
+              // set filter value
+              table
+                .getColumn('amount')
+                ?.setFilterValue([min, event.target.value]);
+            }}
+            className="max-w-sm ml-1"
+          />
+        </div>
       </div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="ml-auto">
+          <Button variant="outline" className="ml-auto mb-4 ml-2">
             Columns
           </Button>
         </DropdownMenuTrigger>
@@ -121,9 +179,9 @@ export function DataTable<TData, TValue>({
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {selectedRows.length > 0 && (
+                {table.getFilteredSelectedRowModel().rows.length > 0 && (
                   <div className="flex-1 text-sm text-muted-foreground">
-                    {selectedRows.length} of{' '}
+                    {table.getFilteredSelectedRowModel().rows.length} of{' '}
                     {table.getFilteredRowModel().rows.length} row(s) selected.
                   </div>
                 )}

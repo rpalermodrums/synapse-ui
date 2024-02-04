@@ -80,7 +80,8 @@ export const columns: ColumnDef<z.infer<typeof Payment>>[] = [
     accessorKey: 'amount',
     enableSorting: true,
     enableHiding: true,
-    sortingFn: 'alphanumeric',
+    sortingFn: 'basic',
+    filterFn: 'inNumberRange',
     header: ({ column }) => (
       <DataTableColumnHeader
         justifyEnd
