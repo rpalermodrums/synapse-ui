@@ -11,5 +11,15 @@
 				"noForEach": "warn"
 			}
 		}
+	},
+	"formatter": {
+		"enabled": true,
+		"indentWidth": 2,
+		"indentStyle": "space"
+	},
+	"javascript": {
+		"formatter": {
+			"semicolons": "always"
+		}
 	}
 }
