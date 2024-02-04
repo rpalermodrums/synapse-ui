@@ -1,0 +1,11 @@
+.formField {
+    background-color: "#e3e3e3";
+    border: 2px solid "#e3e3e3";
+    border-radius: 2px;
+    color: #2e4799;
+    font-size: 16px;
+    box-sizing: border-box;
+    caret-color: "#4cb6ac";
+    margin-top: 5px;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+}

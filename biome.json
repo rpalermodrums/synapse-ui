@@ -19,7 +19,10 @@
 	},
 	"javascript": {
 		"formatter": {
-			"semicolons": "always"
+			"quoteStyle": "single",
+			"semicolons": "always",
+			"indentWidth": 2,
+			"indentStyle": "space"
 		}
 	}
 }

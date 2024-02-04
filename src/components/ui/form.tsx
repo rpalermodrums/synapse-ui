@@ -12,6 +12,7 @@ import {
 
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
+import styles from "./styles/form.module.css";
 
 const Form = FormProvider;
 
@@ -55,6 +56,7 @@ const useFormField = () => {
 	return {
 		id,
 		name: fieldContext.name,
+		className: styles.formField,
 		formItemId: `${id}-form-item`,
 		formDescriptionId: `${id}-form-item-description`,
 		formMessageId: `${id}-form-item-message`,
@@ -78,7 +80,7 @@ const FormItem = React.forwardRef<
 
 	return (
 		<FormItemContext.Provider value={{ id }}>
-			<div ref={ref} className={cn("space-y-2", className)} {...props} />
+			<div ref={ref} className={cn(styles.formField, "space-y-2", className)} {...props} />
 		</FormItemContext.Provider>
 	);
 });
