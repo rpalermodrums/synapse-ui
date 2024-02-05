@@ -2,8 +2,7 @@ version: "3.8"
 
 services:
   app:
-    command: npm i --include=dev && npm run preview --port 8081 --host app.synapse-ui.orb.local --mode production
-    # command: npm i --include=dev && npm run dev
+    command: npm run preview --port 8081 --host app.synapse-ui.orb.local --mode production
     ports:
       - "8081:8081"
     build:
@@ -17,11 +16,10 @@ services:
       - /app/node_modules
   
   storybook:
-    # command: npm i --include=dev && npm run storybook -- -p 6006 -h storybook.synapse-ui.orb.local
-    command: npm i --include=dev && npm run storybook -- -p 6006 -h storybook.synapse-ui.orb.local
+    command: npm run storybook -- -p 6006 -h storybook.synapse-ui.orb.local
     build:
       context: ./
-      target: prod
+      target: dev
 
     environment:
       - DEBUG="vite-tsconfig-paths"
