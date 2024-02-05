@@ -1,4 +1,3 @@
-// import React from 'react';
 import type { ColumnDef } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
 import { z } from 'zod';
@@ -14,21 +13,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { DataTableColumnHeader } from './DataColumnHeader';
-
-export type InvoiceStatus = 'pending' | 'processing' | 'success' | 'failed';
-
-// This schema is used to define the shape of our data.
-export const Payment = z.object({
-  id: z.string(),
-  amount: z.number(),
-  status: z.union([
-    z.literal('pending'),
-    z.literal('processing'),
-    z.literal('success'),
-    z.literal('failed'),
-  ]),
-  email: z.string(),
-});
+import { Payment } from '@/components/ui/types/dataTableTypes';
 
 export const columns: ColumnDef<z.infer<typeof Payment>>[] = [
   {

@@ -1,8 +1,8 @@
-// import React from 'react';
 import { Meta } from '@storybook/react';
-import { fakerEN_US as faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker/locale/en_US';
 
-import { InvoiceStatus, columns } from './data-table/columns';
+import type { InvoiceStatus } from '@/components/ui/types/dataTableTypes';
+import { columns } from '@/stories/data-table/columns';
 import { DataTable } from '@/stories/data-table/DataTable';
 
 export default {

@@ -1,15 +1,15 @@
-import React from 'react';
+import { forwardRef } from 'react';
 import type { LucideProps } from 'lucide-react';
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/utilities/ui/classNames';
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: () => React.ReactElement<LucideProps>;
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, icon, ...props }, ref) => {
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ className, icon, ...props }, ref) => {
     return (
       <div
         className={cn(

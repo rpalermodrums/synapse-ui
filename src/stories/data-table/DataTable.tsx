@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { DollarSignIcon } from 'lucide-react';
 import {
   ColumnFiltersState,
@@ -75,7 +75,7 @@ export function DataTable<TData, TValue>({
         <Input
           placeholder="Filter emails..."
           value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          onChange={(event: ChangeEvent<HTMLInputElement>) => {
             // set filter value
             table.getColumn('email')?.setFilterValue(event.target.value);
 
@@ -123,7 +123,7 @@ export function DataTable<TData, TValue>({
             icon={() => <DollarSignIcon />}
             type="number"
             placeholder="Min Amount"
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            onChange={(event: ChangeEvent<HTMLInputElement>) => {
               const filterValue = table.getColumn('amount')?.getFilterValue();
               const max = Array.isArray(filterValue) ? filterValue[1] : null;
               // set filter value
@@ -138,7 +138,7 @@ export function DataTable<TData, TValue>({
             icon={() => <DollarSignIcon />}
             type="number"
             placeholder="Max Amount"
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            onChange={(event: ChangeEvent<HTMLInputElement>) => {
               const filterValue = table.getColumn('amount')?.getFilterValue();
               const min = Array.isArray(filterValue) ? filterValue[0] : null;
               // set filter value

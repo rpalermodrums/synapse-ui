@@ -1,23 +1,37 @@
+import { toast } from 'sonner';
+
+import { Toaster } from '@/components/ui/sonner';
 import { useState } from 'react';
-import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   return (
     <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button type="button" onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+      <h1 className="text-4xl font-bold text-center text-primary-foreground dark:text-primary-foreground dark:text-primary-foreground dark:text-primary-foreground dark:text-primary-foreground">
+        Synapse UI
+      </h1>
+      <div className="flex flex-col items-center justify-center min-h-screen py-2 dark:bg-primary-background dark:text-primary-foreground">
+        <button
+          type="button"
+          onClick={() => {
+            const nextTheme = theme === 'light' ? 'dark' : 'light';
+            setTheme(nextTheme);
+            toast.success(`WooHoo! Switched to ${nextTheme} mode!`);
+          }}
+        >
+          <span
+            className={
+              theme === 'light'
+                ? 'text-navy bg-formfield-grey'
+                : 'text-formfield-grey bg-navy'
+            }
+          >
+            Click Me!
+          </span>
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Toaster />
     </>
   );
 }
