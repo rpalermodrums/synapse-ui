@@ -6,7 +6,6 @@
     "checkJs": false,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "incremental": true,
     "isolatedModules": true,
     "noEmit": true,
     "resolveJsonModule": true,
