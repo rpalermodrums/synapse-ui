@@ -1,12 +1,9 @@
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import tsconfigPaths from 'vite-tsconfig-paths';
-import pluginLegacy from '@vitejs/plugin-legacy';
 
 
 export default defineConfig((configEnv) => {
   const isDevelopment = configEnv.mode === "development",
-    env = loadEnv(configEnv.mode, process.cwd()),
     idsToHandle = new Set<string>();
   
     return {
@@ -15,7 +12,7 @@ export default defineConfig((configEnv) => {
         sourcemap: isDevelopment ? 'inline' : 'hidden',
         rollupOptions: {
           output: {
-            manualChunks: (id, { getModuleIds }) => {
+            manualChunks: (id) => {
               if (idsToHandle.has(id)) {
                 return;
               }
@@ -48,23 +45,21 @@ export default defineConfig((configEnv) => {
       },
       plugins: [
         react(),
-        tsconfigPaths(),
-        // TODO: Understand requirements WRT legacy browsers/polyfills
-        pluginLegacy(),
+        // TODO: Understand requirements WRT legacy browsers -- can we just compile to ES5 and avoid the extra bundle size? Or do we need polyfills?
       ],
+      resolve: {
+        alias: {
+          '@': '/src',
+        },
+      },
       server: {
         port: 8081,
         host: true,
       },
       esbuild: {
         jsxInject: `import React from 'react'`,
-        sourcemap: !!isDevelopment,
+        sourcemap: isDevelopment,
         treeShaking: !isDevelopment,
-      },
-      optimizeDeps: {
-        esbuildOptions: {
-          loader: { '.js': 'jsx' },
-        },
       },
     };
 });

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { store } from './app/store';
 import { Provider } from 'react-redux';
 
-import App from './App.tsx';
+import App from './App';
 import './index.css';
 
 async function enableMocking() {
@@ -12,7 +12,7 @@ async function enableMocking() {
     return;
   }
 
-  const { worker } = await import('./mocks/browser.ts');
+  const { worker } = await import('./mocks/browser');
   console.log('Mocking enabled');
   // `worker.start()` returns a Promise that resolves
   // once the Service Worker is up and ready to intercept requests.
