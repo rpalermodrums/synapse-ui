@@ -1,5 +1,4 @@
-import { defineConfig, loadEnv, splitVendorChunkPlugin } from "vite";
-import { createHtmlPlugin } from "vite-plugin-html";
+import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from 'vite-tsconfig-paths';
 import pluginLegacy from '@vitejs/plugin-legacy';
@@ -7,7 +6,8 @@ import pluginLegacy from '@vitejs/plugin-legacy';
 
 export default defineConfig((configEnv) => {
   const isDevelopment = configEnv.mode === "development",
-    env = loadEnv(configEnv.mode, process.cwd());
+    env = loadEnv(configEnv.mode, process.cwd()),
+    idsToHandle = new Set<string>();
   
     return {
       build: {
@@ -16,28 +16,15 @@ export default defineConfig((configEnv) => {
         rollupOptions: {
           output: {
             manualChunks: (id, { getModuleIds }) => {
-              const idsToHandle = new Set(getModuleIds());
               if (idsToHandle.has(id)) {
                 return;
               }
               idsToHandle.add(id);
               if (id.includes('react-dom')) {
-                return `vendor.react-dom.${id}`;
+                return 'vendor.react-dom';
               }
               if (id.includes('react') || id.includes('redux')) {
-                return `vendor.react.${id}`;
-              }
-              if (
-                id.includes('@babel') ||
-                id.includes('@swc') ||
-                id.includes('@types') ||
-                id.includes('@vitest') ||
-                id.includes('date-fns') ||
-                id.includes('typescript') ||
-                id.includes('vite') ||
-                id.includes('zod')
-              ) {
-                return `vendor.large.${id}`;
+                return 'vendor.react_redux';
               }
               if (
                 id.includes('@tanstack') ||
@@ -50,31 +37,20 @@ export default defineConfig((configEnv) => {
                 id.includes('sonner') ||
                 id.includes('vaul')
               ) {
-                return `vendor.ui.${id}`;
+                return `vendor.ui.${id.split('/')[1]}`;
               }
-              return id.includes('node_modules') ? `vendor.default.${id}` : `source.${id}`;
+              if (id.includes('node_modules')) {
+                return 'vendor.default';
+              }
             },
           },
         },
       },
       plugins: [
         react(),
-        splitVendorChunkPlugin(),
         tsconfigPaths(),
-        pluginLegacy({
-          targets: ['last 2 chrome versions', '>2%', 'not dead'],
-        }),
-        createHtmlPlugin({
-          minify: true,
-          inject: {
-            data: {
-              VITE_API_HOST: env.VITE_API_HOST,
-              VITE_PORTAL_ENV: env.VITE_PORTAL_ENV,
-              VITE_HEAP_API_KEY: env.VITE_HEAP_API_KEY,
-              VITE_LAUNCHDARKLY_CLIENT_ID: env.VITE_LAUNCHDARKLY_CLIENT_ID,
-            },
-          },
-        }),
+        // TODO: Understand requirements WRT legacy browsers/polyfills
+        pluginLegacy(),
       ],
       server: {
         port: 8081,
