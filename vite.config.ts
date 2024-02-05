@@ -28,6 +28,10 @@ export default defineConfig((configEnv) => {
                 return `vendor.react.${id}`;
               }
               if (
+                id.includes('@babel') ||
+                id.includes('@swc') ||
+                id.includes('@types') ||
+                id.includes('@vitest') ||
                 id.includes('date-fns') ||
                 id.includes('typescript') ||
                 id.includes('vite') ||
