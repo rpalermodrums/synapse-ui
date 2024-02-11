@@ -1,8 +1,9 @@
 import type { Preview } from "@storybook/react";
-import { withThemeByClassName } from "@storybook/addon-themes";
+import {withThemeByClassName, withThemeFromJSXProvider} from "@storybook/addon-themes";
 
 import '../src/styles/index.css';
 import 'tailwindcss/tailwind.css';
+import {Theme} from "@radix-ui/themes";
 
 const preview: Preview = {
   parameters: {
@@ -22,6 +23,9 @@ const preview: Preview = {
       },
       defaultTheme: "light",
     }),
+    withThemeFromJSXProvider<any>({
+      Provider: Theme
+    })
   ]
 };
 
