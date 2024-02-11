@@ -2,8 +2,8 @@ import { Meta } from '@storybook/react';
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import type { InvoiceStatus } from '@/components/ui/types/dataTableTypes';
-import { columns } from '@/stories/data-table/columns';
-import { DataTable } from '@/stories/data-table/DataTable';
+import { columns } from './data-table/columns';
+import { DataTable } from './data-table/DataTable';
 
 export default {
   title: 'UI/DataTable',

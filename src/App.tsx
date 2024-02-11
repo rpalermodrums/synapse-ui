@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      <h1 className="text-4xl font-bold text-center text-primary-foreground dark:text-primary-foreground dark:text-primary-foreground dark:text-primary-foreground dark:text-primary-foreground">
+      <h1 className="text-4xl font-bold text-center text-primary-foreground dark:text-primary-foreground">
         Synapse UI
       </h1>
       <div className="flex flex-col items-center justify-center min-h-screen py-2 dark:bg-primary-background dark:text-primary-foreground">

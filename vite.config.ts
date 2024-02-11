@@ -1,9 +1,9 @@
-import { defineConfig } from "vite";
+import {ConfigEnv, defineConfig} from "vite";
 import react from "@vitejs/plugin-react";
 import { get } from "http";
 
 
-export default defineConfig((configEnv) => {
+export default defineConfig((configEnv: ConfigEnv) => {
   const isDevelopment = configEnv.mode === "development";
 
     return {
@@ -14,7 +14,7 @@ export default defineConfig((configEnv) => {
           output: {
             manualChunks: (id) => {
               const idsToHandle = new Set<string>();
-              
+
               if (idsToHandle.has(id)) {
                 return;
               }
@@ -31,7 +31,6 @@ export default defineConfig((configEnv) => {
                 id.includes('@tailwind') ||
                 id.includes('embla-carousel-react') ||
                 id.includes('lucide-react') ||
-                id.includes('next-themes') ||
                 id.includes('sonner') ||
                 id.includes('vaul')
               ) {

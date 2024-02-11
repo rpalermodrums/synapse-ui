@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { type Meta } from '@storybook/react';
-import { SelectContent, type SelectProps } from '@radix-ui/react-select';
+import { SelectContent, type SelectProps } from '@radix-ui/themes';
 
 import { Select, SelectItem, SelectTrigger } from '../components/ui/select';
 
