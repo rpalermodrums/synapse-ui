@@ -1,11 +1,11 @@
-import 'tailwindcss/tailwind.css';
-
 import ReactDOM from 'react-dom/client';
+import { Theme } from "@radix-ui/themes";
 import { store } from './app/store';
 import { Provider } from 'react-redux';
 
 import App from './App';
 import './index.css';
+import 'tailwindcss/tailwind.css';
 
 async function enableMocking() {
   if (process.env.NODE_ENV !== 'development') {
@@ -22,8 +22,10 @@ async function enableMocking() {
 enableMocking().then(() => {
   // biome-ignore lint/style/noNonNullAssertion: <explanation>
   ReactDOM.createRoot(document.getElementById('root')!).render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
+    <Theme>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </Theme>,
   );
 });

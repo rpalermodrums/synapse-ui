@@ -2,6 +2,7 @@ import { Meta } from '@storybook/react';
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import type { InvoiceStatus } from '@/components/ui/types/dataTableTypes';
+
 import { columns } from './data-table/columns';
 import { DataTable } from './data-table/DataTable';
 

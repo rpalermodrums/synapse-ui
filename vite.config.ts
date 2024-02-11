@@ -57,7 +57,6 @@ export default defineConfig((configEnv: ConfigEnv) => {
         host: true,
       },
       esbuild: {
-        jsxInject: `import React from 'react'`,
         sourcemap: isDevelopment,
         treeShaking: !isDevelopment,
       },

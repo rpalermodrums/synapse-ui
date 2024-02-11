@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { type Meta } from '@storybook/react';
-import { SelectContent, type SelectProps } from '@radix-ui/themes';
+import { SelectContent } from '@radix-ui/themes';
 
-import { Select, SelectItem, SelectTrigger } from '../components/ui/select';
+import { Select, SelectItem, SelectTrigger } from '@/components/ui/select';
 
 export default {
   title: 'UI/Select',
@@ -19,7 +19,7 @@ const Item = ({ label, value }: { label: string; value: string }) => (
   <SelectItem value={value}>{label}</SelectItem>
 );
 
-const Template = (args: JSX.IntrinsicAttributes & SelectProps) => {
+const Template = (args: React.ReactNode[]) => {
   const [value, setValue] = useState('');
 
   return (

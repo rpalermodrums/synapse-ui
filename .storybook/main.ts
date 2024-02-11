@@ -3,14 +3,14 @@ import { mergeConfig } from "vite";
 export default {
   stories: ['../**/*.mdx', '../**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
+    '@storybook/addon-themes',
     '@storybook/addon-essentials',
-    '@storybook/addon-designs',
     '@storybook/addon-interactions',
   ],
   framework: {
     name: '@storybook/react-vite',
     options: {
-      fastRefresh: true,
+      fastRefresh: true
     }
   },
   features: {
@@ -20,7 +20,7 @@ export default {
   async viteFinal(config: Record<string, any>) {
     return mergeConfig(config, {
       optimizeDeps: {
-        include: ['storybook-addon-designs', 'storybook-dark-mode'],
+        include: ['storybook-dark-mode'],
       },
     });
   },

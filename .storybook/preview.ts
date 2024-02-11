@@ -1,4 +1,7 @@
 import type { Preview } from "@storybook/react";
+import { withThemeByClassName } from "@storybook/addon-themes";
+
+import '../src/styles/index.css';
 import 'tailwindcss/tailwind.css';
 
 const preview: Preview = {
@@ -11,6 +14,15 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    withThemeByClassName<any>({
+      themes: {
+        light: "light",
+        dark: "dark",
+      },
+      defaultTheme: "light",
+    }),
+  ]
 };
 
 export default preview;

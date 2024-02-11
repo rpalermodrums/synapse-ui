@@ -1,3 +1,5 @@
+import React, { forwardRef, useId } from 'react';
+
 import * as LabelPrimitive from '@radix-ui/react-label';
 import { Slot } from '@radix-ui/react-slot';
 import {
@@ -15,7 +17,6 @@ import {
   FormItemContext,
   useFormField,
 } from '@/utilities/hooks/form';
-import { forwardRef, useId } from 'react';
 
 const FormField = <
   TFieldValues extends FieldValues = FieldValues,
@@ -40,7 +41,7 @@ const FormItem = forwardRef<
     <FormItemContext.Provider value={{ id }}>
       <div
         ref={ref}
-        className={cn('bg-formfield-grey/100 space-y-2', className)}
+        className={cn('space-y-2', className)}
         {...props}
       />
     </FormItemContext.Provider>
