@@ -20,7 +20,7 @@ export default {
   async viteFinal(config: Record<string, any>) {
     return mergeConfig(config, {
       optimizeDeps: {
-        include: ['storybook-dark-mode'],
+        include: ['storybook-dark-mode', '@storybook/addon-themes'],
       },
     });
   },

@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   app:
-    command: npm run preview --port 8081 --host app.synapse-ui.orb.local --mode production
+    command: pnpm run preview --port 8081 --host app.synapse-ui.orb.local --mode production
     ports:
       - "8081:8081"
     build:
@@ -14,9 +14,9 @@ services:
     volumes:
       - ./:/app
       - /app/node_modules
-  
+
   storybook:
-    command: npm run storybook -- -p 6006 -h storybook.synapse-ui.orb.local
+    command: pnpm run storybook -- -p 6006 -h storybook.synapse-ui.orb.local
     build:
       context: ./
       target: dev
