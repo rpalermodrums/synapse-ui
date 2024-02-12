@@ -7,7 +7,7 @@
     "target": "ESNext",
     "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true,
-    "lib": ["DOM"]
+    "lib": ["ESNext", "DOM", "DOM.Iterable"]
   },
   "include": ["vite.config.ts", "tailwind.config.ts"]
 }

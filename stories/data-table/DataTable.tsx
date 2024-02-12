@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import {ChangeEvent, FormEvent, useState} from 'react';
 import { DollarSignIcon } from 'lucide-react';
 import {
   ColumnFiltersState,
@@ -75,7 +75,7 @@ export function DataTable<TData, TValue>({
         <Input
           placeholder="Filter emails..."
           value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
-          onChange={(event: ChangeEvent<HTMLInputElement>) => {
+          onChange={(event: FormEvent<HTMLInputElement>) => {
             // set filter value
             table.getColumn('email')?.setFilterValue(event.target.value);
 
