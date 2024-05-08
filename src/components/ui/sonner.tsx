@@ -1,14 +1,12 @@
 import { Toaster as Sonner } from 'sonner';
 import {useThemeContext} from "@radix-ui/themes";
 
-type ToasterProps = React.ComponentProps<typeof Sonner>;
-
-const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = 'system' } = useThemeContext();
+const Toaster = ({ ...props }: any) => {
+  const { theme = 'system' } = useThemeContext() as any;
 
   return (
     <Sonner
-      theme={theme as ToasterProps['theme']}
+      theme={theme}
       className="toaster group"
       toastOptions={{
         classNames: {

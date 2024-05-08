@@ -7,8 +7,6 @@ services:
       - "8081:8081"
     build:
       context: ./
-      # target: dev
-      target: prod
     environment:
       - DEBUG="vite-tsconfig-paths"
     volumes:
@@ -20,7 +18,6 @@ services:
     build:
       context: ./
       target: dev
-
     environment:
       - DEBUG="vite-tsconfig-paths"
     ports:
@@ -28,3 +25,4 @@ services:
     volumes:
       - ./:/app
       - /app/node_modules
+

@@ -4,7 +4,7 @@ import { store } from './app/store';
 import { Provider } from 'react-redux';
 
 import App from './App';
-import './index.css';
+import './styles/index.css';
 import 'tailwindcss/tailwind.css';
 
 async function enableMocking() {

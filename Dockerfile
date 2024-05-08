@@ -6,6 +6,7 @@ FROM node:lts-bullseye-slim AS builder
 WORKDIR /app
 
 COPY package*.json ./
+RUN npm install -g pnpm
 RUN pnpm install --include=optional
 
 COPY . .
